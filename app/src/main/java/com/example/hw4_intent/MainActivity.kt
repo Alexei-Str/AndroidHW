@@ -5,13 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.net.Uri
-import android.util.Log
 import android.widget.Toast
 
+const val REQUEST_CODE_SHARE = 1
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,19 +15,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button.setOnClickListener(){
+        btn_some_semantic.setOnClickListener(){
             val sendIntent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, "Hi")
                 type = "text/plain"
             }
-            startActivityForResult(sendIntent, 1)
+            startActivityForResult(sendIntent, REQUEST_CODE_SHARE)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE_SHARE && resultCode == Activity.RESULT_OK) {
             Toast.makeText(this, "Shared", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Is Failed message", Toast.LENGTH_SHORT).show()
