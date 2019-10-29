@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import android.widget.Toast
 
-const val REQUEST_CODE_SHARE = 1
+private const val REQUEST_CODE_SHARE = 1
 
 class MainActivity : AppCompatActivity() {
 
